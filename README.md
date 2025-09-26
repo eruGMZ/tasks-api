@@ -1,66 +1,210 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📌 Tasks API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Tasks API** es una aplicación en **Laravel 10** que gestiona un sistema de **tareas**, con relaciones entre **usuarios** y **empresas**.  
+Incluye **CRUD de tareas**, validaciones personalizadas (máximo de 5 tareas pendientes por usuario), migraciones y seeders con datos de prueba, además de endpoints RESTful listos para usarse y probados con Postman.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Características principales
+- ✅ CRUD completo de tareas
+- ✅ Relaciones entre **usuarios**, **empresas** y **tareas**
+- ✅ Validación de datos
+- ✅ Límite de **5 tareas pendientes por usuario**
+- ✅ Endpoints RESTful
+- ✅ Migraciones y seeders de base de datos
+- ✅ Datos de prueba incluidos para Postman
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🛠️ Tecnologías utilizadas
+- [Laravel 10.49.0](https://laravel.com/)
+- [PHP 8.3](https://www.php.net/)
+- [MySQL](https://www.mysql.com/)
+- [Composer](https://getcomposer.org/)
+- [Postman](https://www.postman.com/) para pruebas de endpoints
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 📡 Endpoints principales
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```php
+1. Obtener todas las compañías
+Route::get('companies', [CompanyController::class, 'index']);
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. Obtener todas las tareas
+Route::get('tasks', [TaskController::class, 'index']);
 
-## Laravel Sponsors
+3. Crear nueva tarea
+Route::post('tasks', [TaskController::class, 'store']);
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+⚙️ Configuración de entorno (ejemplo usado en Postman)
 
-### Premium Partners
+En el archivo .env:
+APP_NAME=Laravel
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_URL=http://127.0.0.1:8001
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Configurar base de datos para migracion:
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=tasks-api
+DB_USERNAME=root
+DB_PASSWORD=
 
-## Contributing
+En Postman, configurar un entorno con:
+-> base_url = http://127.0.0.1:8001/api
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+-> content_type = application/json
 
-## Code of Conduct
+-> Accept = application/json
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+📬 Ejemplos de pruebas con Postman
 
-## Security Vulnerabilities
+🔹 1. GET {{base_url}}/companies
+Respuesta json:
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Netcommerce",
+      "tasks": [
+        {
+          "id": 1,
+          "name": "Task 1",
+          "description": "Task content 1",
+          "user": "Akira",
+          "is_completed": 0,
+          "start_at": "2025-09-26 21:26:31",
+          "expired_at": "2025-09-26 21:26:31"
+        },
+        {
+          "id": 2,
+          "name": "Task 2",
+          "description": "Task content 2",
+          "user": "Akira",
+          "is_completed": 1,
+          "start_at": "2025-09-26 21:26:31",
+          "expired_at": null
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Netcommerce",
+      "tasks": []
+    },
+    {
+      "id": 3,
+      "name": "Netcommerce",
+      "tasks": []
+    }
+  ]
+}
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---------------------------------------
+🔹 2. GET {{base_url}}/tasks
+Respuesta json:
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Task 1",
+      "description": "Task content 1",
+      "user": "Akira",
+      "company": {
+        "id": 1,
+        "name": "Netcommerce"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Task 2",
+      "description": "Task content 2",
+      "user": "Akira",
+      "company": {
+        "id": 1,
+        "name": "Netcommerce"
+      }
+    },
+    {
+      "id": 3,
+      "name": "task 3",
+      "description": "task content 3",
+      "user": "Akira",
+      "company": {
+        "id": 3,
+        "name": "Netcommerce"
+      }
+    }
+  ]
+}
 
-## License
+---------------------------------------
+🔹 3. POST {{base_url}}/tasks
+Petición json:
+{
+  "company_id": 1,
+  "name": "task 3",
+  "description": "task content 3",
+  "user_id": 1
+}
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Respuesta json:
+{
+  "id": 3,
+  "name": "task 3",
+  "description": "task content 3",
+  "user": "Akira",
+  "company": {
+    "id": 1,
+    "name": "Netcommerce"
+  }
+}
+
+🚫 Límite de 5 tareas pendientes por usuario
+
+Petición (más de 5 tareas pendientes):
+
+json:
+{
+  "company_id": 1,
+  "name": "task 7",
+  "description": "task content 7",
+  "user_id": 1
+}
+
+Respuesta json
+{
+  "message": "El usuario no puede tener más de 5 tareas pendientes.",
+  "errors": {
+    "user_id": [
+      "El usuario no puede tener más de 5 tareas pendientes."
+    ]
+  }
+}
+
+▶️ Instalación rápida
+
+Clonar el repositorio:
+git clone https://github.com/eruGMZ/tasks-api.git
+cd tasks-api
+
+Instalar dependencias:
+composer install
+
+Copiar el archivo .env y configurar la base de datos:
+cp .env.example .env
+
+Generar la clave de la aplicación:
+php artisan key:generate
+
+Ejecutar migraciones y seeders:
+php artisan migrate --seed
+
+Levantar el servidor:
+php artisan serve --port=8001
+
+Probar los endpoints en Postman 
