@@ -29,4 +29,4 @@ Route::get('companies', [CompanyController::class, 'index']);
 Route::get('tasks', [TaskController::class, 'index']);  
 
 // Endpoint to create a new task
-Route::post('tasks/create', [TaskController::class, 'store']);
+Route::post('tasks', [TaskController::class, 'store']);
