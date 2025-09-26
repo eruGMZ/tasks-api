@@ -17,20 +17,19 @@ class CompaniesSeeder extends Seeder
      */
     public function run(): void
     {
-        $tasks = [
+        $companies = [
             [
                 'name' => 'Netcommerce',
             ],
             [
-                'name' => 'Netcommerce 2',
+                'name' => 'Netcommerce',
             ],
             [
-                'name' => 'Netcommerce 3',
-            ]
+                'name' => 'Netcommerce',
+            ],
+            // [more companies...]
         ];
 
-        $this->createData($tasks, $this->service->getClassModel(), function ($query, $value) {
-            return $query->where('name', $value['name']);
-        });
+        $this->createData($companies, $this->service->getClassModel());
     }
 }

@@ -20,11 +20,13 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-// endpoint para obtener todas las compañias
+// --------------------------------------- API Routes ---------------------------------------
+
+// Endpoint to get all companies
 Route::get('companies', [CompanyController::class, 'index']);
 
-// Endpoint para todas las tareas
-Route::get('tasks', [TaskController::class, 'index']);
+// Endpoint to get all tasks 
+Route::get('tasks', [TaskController::class, 'index']);  
 
-// Endpoint solo para crear tareas
+// Endpoint to create a new task
 Route::post('tasks/create', [TaskController::class, 'store']);

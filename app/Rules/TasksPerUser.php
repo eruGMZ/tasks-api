@@ -8,6 +8,9 @@ use Illuminate\Contracts\Validation\ValidationRule;
 
 class TasksPerUser implements ValidationRule
 {
+    /**
+     * Validate that a user does not have more than 5 pending tasks.
+     */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $user = User::find($value);

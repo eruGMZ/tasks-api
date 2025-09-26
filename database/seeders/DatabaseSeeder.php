@@ -13,13 +13,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Crear compañias de ejemplo
-        $this->call(CompaniesSeeder::class);
+        // Create the default company
+        $this->call(CompaniesSeeder::class); 
 
-        // Crear usuarios de ejemplo
+        // Create example users
         $this->call(UsersSeeder::class);
         
-        // Crear tareas de ejemplo
+        // Create example tasks
         $this->call(TasksSeeder::class);
     }
 }

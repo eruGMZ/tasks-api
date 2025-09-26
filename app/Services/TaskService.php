@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Task;
 use App\Repositories\BaseRepository;
+use Illuminate\Database\Eloquent\Collection;
 
 class TaskService extends BaseRepository
 {
@@ -17,9 +18,9 @@ class TaskService extends BaseRepository
         return $this->model::class;
     }
 
-    public function getTasks(array $relations = [])
+    public function getTasks(array $relations = []): Collection
     {
-        return $this->list($relations)->with($relations)->get();
+        return $this->list($relations)->get();
     }
 
     public function createTask(array $data): array

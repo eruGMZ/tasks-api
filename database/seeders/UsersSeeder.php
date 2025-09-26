@@ -23,18 +23,7 @@ class UsersSeeder extends Seeder
                 'password' => bcrypt(rand(1000, 9999)),
                 'company_id' => 1
             ],
-            [
-                'name' => 'Sakura',
-                'email' => 'sakura@example.com',
-                'password' => bcrypt(rand(1000, 9999)),
-                'company_id' => 1
-            ],
-            [
-                'name' => 'Takeshi',
-                'email' => 'takeshi@example.com',
-                'password' => bcrypt(rand(1000, 9999)),
-                'company_id' => 1
-            ]
+            // [more users...]
         ];
 
         $this->createData($users, User::class, function (Builder $query, $value) {

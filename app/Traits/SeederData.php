@@ -6,15 +6,28 @@ use Closure;
 
 trait SeederData
 {
-
-    public function createData(array $data, string $modelRef, ?Closure $callback): bool
+    /**
+     * Create data in the database if it does not already exist.
+     *
+     * @param array $data The data to be inserted.
+     * @param string $modelRef The model class reference.
+     * @param Closure|null $callback Optional callback to customize the query for checking existing records.
+     * @return bool Returns true if the operation is successful.
+     * @throws \Throwable Throws an exception if an error occurs during the operation.
+     */
+    public function createData(array $data, string $modelRef, ?Closure $callback = null): bool
     {
         try {
             foreach ($data as $value) {
 
-                $builder = $callback($modelRef::query(), $value);    // si se pasa un callback, se ejecuta
+                $builder = $modelRef::query();
 
-                if ($builder->get()->count() > 0) continue; // si existe algun registro con el parametro ingresado, no crear (evita duplicados)
+                if (is_callable($callback)) {   // if a callback function is provided
+
+                    $builder = $callback($builder, $value);
+                    
+                    if ($builder->exists()) continue;  // and if the record exists, skip to the next iteration
+                }
 
                 $modelRef::create($value);
             }
