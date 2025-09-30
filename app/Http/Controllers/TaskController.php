@@ -8,6 +8,9 @@ use Illuminate\Http\JsonResponse;
 
 class TaskController extends Controller
 {
+    /**
+     * Injecting TaskService to handle business logic
+    */
     public function __construct(private TaskService $service) {}
 
     public function index(): JsonResponse

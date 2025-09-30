@@ -17,6 +17,9 @@ class Task extends Model
         'description',
         'company_id',
         'user_id',
+        'is_completed',
+        'start_at',
+        'expired_at',
     ];
 
     public function company(): BelongsTo
